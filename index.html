@@ -6,16 +6,11 @@
     <title>Welcome to Firebase Hosting</title>
 
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.15.5/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.15.5/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-storage.js"></script>
-    <script defer src="/__/firebase/7.15.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase.js"></script>
+
 
     <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
 
 
     <style media="screen">
@@ -32,41 +27,47 @@
         body { border-top: 16px solid #ffa100; }
       }
     </style>
-    <script src="schedural.js"></script>
+    <link rel = "stylesheet" href = "style.css">
   </head>
   <body>
-    <div>
-      <div id="header">
-        <h1>Schedural Planner</h1>
-      </div>
-      <div id="schedural">
-        <div id="Enter">
-          <div id="Date"></div>
-          <div id="Weekday"></div>
+    <div class="head">
+      <h1>Schedural Planner</h1>
+      <div id="Date" class="left"></div>
           <script>
             var d = new Date();
             document.getElementById("Date").innerHTML 
                 ='Todays Date: '+ (d.getMonth()+1) + '/' + d.getDate()+'/'+d.getFullYear();
           </script>
-          <div id="EnterEvent">
-            <input type="text">
-            <button id="Enter" onclick="enterinfo()">Click to add event</button>
-          </div>
-
-          <form action="/action_page.php">
-            <label for="Date">Enter Date:</label>
-            <input type="text" id="Date" name="date" value="">
-            <br>
-            <label for="Event">Enter Event:</label>
-            <input type="text" id="Event" name="event" value="">
-            <br>
-            <input type="submit"  onclick="enterinfo()">
-          </form>
-        </div>
-
-      <div id="Body">
-        <h1>making Schedural</h1>
-      </div>
     </div>
+    <div class="content">
+      <div id="schedural" >
+        <div id="left" style=" text-align:center">
+            <form id="addEvent">
+              <input type="text" name="date" id="dt" placeholder="Enter Date">
+              <br>
+              <input type="text" name="event" id="et" placeholder="Enter Event">
+              <br>
+              <button> Add Event </button>
+            </form>
+        </div>
+        <div id="right">
+          <ul id="Schedural"></ul>
+          <p><form method="link" action="javascript:document.location.reload()"><input type="submit" value="update" onClick="this.value = 'updating...'"></form></p>
+
+        </div>
+    </div>
+    <script>
+      var config = {
+        apiKey: "AIzaSyBgT2k8cuzyQt8LD79nanXAVGHYoZu7zLc",
+        authDomain: "schplanner-43974.firebaseapp.com",
+        databaseURL: "https://schplanner-43974.firebaseio.com",
+        projectId: "schplanner-43974",
+        storageBucket: "schplanner-43974.appspot.com",
+        messagingSenderId: "453265108925",
+      }
+      firebase.initializeApp(config);
+      const db = firebase.firestore();
+    </script>
+        <script src="app.js"></script>
   </body>
 </html>
